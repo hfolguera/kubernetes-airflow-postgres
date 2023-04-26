@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: airflow-postgres-pv
+  namespace: airflow
+  labels:
+    type: local
+    app: postgres
+spec:
+  storageClassName: airflow-postgres-pv
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    server: 192.168.1.11
+    path: "/volume2/NFS/homelab/airflow-volume/postgres-airflow"
+
